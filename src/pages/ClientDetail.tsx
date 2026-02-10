@@ -7,6 +7,7 @@ export function ClientDetail() {
   const { id } = useParams<{ id: string }>()
   const [client, setClient] = useState<Client | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     async function loadClient() {
@@ -22,6 +23,15 @@ export function ClientDetail() {
     }
     loadClient()
   }, [id])
+
+  const handleCopyLink = () => {
+    if (client?.share_token) {
+      const shareUrl = `${window.location.origin}/kundeskjema/${client.share_token}`
+      navigator.clipboard.writeText(shareUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
 
   if (isLoading) {
     return (
@@ -65,10 +75,38 @@ export function ClientDetail() {
           <p className="text-slate-600">Velg hvilken versjon av skjemaet du vil bruke</p>
         </div>
 
+        {/* Share Link Section */}
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+          <h2 className="text-slate-900 font-semibold mb-2">Lenke for kunde</h2>
+          <p className="text-slate-600 text-sm mb-4">
+            Send denne lenken til kunden slik at de kan fylle ut skjemaet selv før oppstartsmøtet:
+          </p>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              readOnly
+              value={`${window.location.origin}/kundeskjema/${client.share_token}`}
+              className="flex-1 px-4 py-2 bg-white border border-green-200 rounded text-sm text-slate-700"
+            />
+            <button
+              onClick={handleCopyLink}
+              className={`px-4 py-2 rounded font-medium transition-colors ${
+                copied
+                  ? 'bg-green-600 text-white'
+                  : 'bg-green-600 text-white hover:bg-green-700'
+              }`}
+            >
+              {copied ? 'Kopiert!' : 'Kopier lenke'}
+            </button>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6">
           {/* Customer Version Card */}
-          <Link
-            to={`/kunde/${client.id}/kundeskjema`}
+          <a
+            href={`/kundeskjema/${client.share_token}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow text-left group block"
           >
             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
@@ -82,12 +120,12 @@ export function ClientDetail() {
               Gir kunden en oversikt over hvilken informasjon og tilganger som trengs.
             </p>
             <div className="inline-flex items-center text-blue-600 group-hover:gap-2 transition-all">
-              <span>Send til kunde</span>
+              <span>Åpne eller del lenke</span>
               <svg className="w-4 h-4 ml-1 group-hover:ml-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-          </Link>
+          </a>
 
           {/* Meeting Version Card */}
           <Link

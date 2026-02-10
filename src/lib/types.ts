@@ -1,6 +1,7 @@
 export interface Client {
   id: string
   name: string
+  share_token: string
   created_at: string
 }
 
@@ -46,8 +47,12 @@ export interface FormData {
   googleBusinessAccess: string
   metaBusinessManagerId: string
   metaAccessNotes: string
-  klaviyoExists: string
-  klaviyoAccessNotes: string
+  
+  // Email & Newsletter
+  hasNewsletterSoftware: string // 'yes', 'no'
+  newsletterSoftwareType: string // 'klaviyo', 'mailchimp', 'convertkit', 'brevo', 'other', 'none'
+  newsletterSoftwareOther: string
+  emailMarketingToolAccess: string // Access details if they have existing software
   dnsProvider: string
   dnsAccessNotes: string
 
@@ -58,9 +63,10 @@ export interface FormData {
   brandColors: string
   fonts: string
   brandManual: string
+  brandManual: string
   toneOfVoiceNotes: string
 
-  // 5. Klaviyo
+  // 5. Email Setup (flexible based on chosen software)
   senderName: string
   senderEmail: string
   supportEmail: string
@@ -73,7 +79,7 @@ export interface FormData {
   metaPixelInstalled: string
   capiActive: string
   googleAdsConversions: string
-  klaviyoTracking: string
+  emailSoftwareTracking: string
   customTracking: string
 
   // 7. Budget

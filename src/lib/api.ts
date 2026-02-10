@@ -27,15 +27,42 @@ export async function getClient(id: string): Promise<Client | null> {
   return data
 }
 
-export async function createClient(name: string): Promise<Client> {
+export async function getClientByToken(token: string): Promise<Client | null> {
   const { data, error } = await supabase
     .from('clients')
-    .insert({ name })
+    .select('*')
+    .eq('share_token', token)
+    .single()
+
+  if (error) {
+    if (error.code === 'PGRST116') return null
+    throw error
+  }
+  return data
+}
+
+export async function createClient(name: string): Promise<Client> {
+  // Generate a unique share token
+  const shareToken = generateShareToken()
+  
+  const { data, error } = await supabase
+    .from('clients')
+    .insert({ name, share_token: shareToken })
     .select()
     .single()
 
   if (error) throw error
   return data
+}
+
+function generateShareToken(): string {
+  // Generate a URL-safe token (e.g., "abc123def456...")
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let token = ''
+  for (let i = 0; i < 32; i++) {
+    token += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  return token
 }
 
 export async function deleteClient(id: string): Promise<void> {

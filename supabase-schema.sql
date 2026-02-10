@@ -10,6 +10,7 @@ create extension if not exists "uuid-ossp";
 create table clients (
   id uuid primary key default uuid_generate_v4(),
   name text not null,
+  share_token text unique not null,
   created_at timestamptz not null default now()
 );
 

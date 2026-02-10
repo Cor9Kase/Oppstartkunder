@@ -9,7 +9,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/kunde/:id" element={<ClientDetail />} />
-      <Route path="/kunde/:id/kundeskjema" element={<CustomerFormPage />} />
+      <Route path="/kundeskjema/:token" element={<CustomerFormPage />} />
       <Route path="/kunde/:id/moteskjema" element={<MeetingFormPage />} />
     </Routes>
   )
