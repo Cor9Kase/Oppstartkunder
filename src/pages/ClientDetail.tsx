@@ -116,8 +116,8 @@ export function ClientDetail() {
             </div>
             <h2 className="text-slate-900 mb-2">Kundeversjon</h2>
             <p className="text-slate-600 mb-4">
-              En oversiktlig versjon som kan sendes til kunden i forkant av møtet.
-              Gir kunden en oversikt over hvilken informasjon og tilganger som trengs.
+              En redigerbar versjon kunden kan fylle ut selv i forkant av møtet.
+              Data lagres automatisk og kan oppdateres senere ved behov.
             </p>
             <div className="inline-flex items-center text-blue-600 group-hover:gap-2 transition-all">
               <span>Åpne eller del lenke</span>

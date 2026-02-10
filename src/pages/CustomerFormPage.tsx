@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getClientByToken } from '../lib/api'
-import { CustomerForm } from '../components/CustomerForm'
+import { MeetingForm } from '../components/MeetingForm'
 import type { Client } from '../lib/types'
 
 export function CustomerFormPage() {
   const { token } = useParams<{ token: string }>()
-  const navigate = useNavigate()
   const [client, setClient] = useState<Client | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isUnauthorized, setIsUnauthorized] = useState(false)
@@ -63,11 +62,11 @@ export function CustomerFormPage() {
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-xl font-semibold text-slate-900">{client.name}</h1>
           <div className="px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700">
-            Kundeversjon
+            Kundeversjon (redigerbar)
           </div>
         </div>
       </div>
-      <CustomerForm clientName={client.name} clientId={client.id} />
+      <MeetingForm clientId={client.id} clientName={client.name} mode="customer" />
     </div>
   )
 }

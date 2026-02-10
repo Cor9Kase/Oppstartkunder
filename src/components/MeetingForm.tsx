@@ -7,9 +7,10 @@ import type { FormData } from '../lib/types';
 interface MeetingFormProps {
   clientId: string;
   clientName: string;
+  mode?: 'meeting' | 'customer';
 }
 
-export function MeetingForm({ clientId, clientName }: MeetingFormProps) {
+export function MeetingForm({ clientId, clientName, mode = 'meeting' }: MeetingFormProps) {
   const { register, watch, setValue, reset } = useForm<FormData>({
     defaultValues: {}
   });
@@ -272,7 +273,9 @@ Generert: ${new Date().toLocaleString('nb-NO')}
       <div className="bg-white rounded-lg shadow-lg p-8 mb-6 print:shadow-none">
         <div className="text-center mb-8 pb-6 border-b border-slate-200">
           <h1 className="text-slate-900 mb-2">Oppstartsskjema for {clientName}</h1>
-          <p className="text-slate-600">Skar Digital – Møteversjon</p>
+          <p className="text-slate-600">
+            {mode === 'customer' ? 'Skar Digital – Kundeversjon' : 'Skar Digital – Møteversjon'}
+          </p>
           <p className="text-slate-500 text-sm mt-2">Skjemaet lagres automatisk</p>
         </div>
 
@@ -984,22 +987,24 @@ Generert: ${new Date().toLocaleString('nb-NO')}
       {/* Action Buttons */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 print:hidden shadow-lg">
         <div className="max-w-5xl mx-auto flex justify-end gap-3">
-          <button
-            onClick={handleCopyToClipboard}
-            className="px-6 py-3 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors flex items-center gap-2"
-          >
-            {copied ? (
-              <>
-                <Check className="w-5 h-5" />
-                Kopiert!
-              </>
-            ) : (
-              <>
-                <Copy className="w-5 h-5" />
-                Kopier til Drive/Notion
-              </>
-            )}
-          </button>
+          {mode === 'meeting' && (
+            <button
+              onClick={handleCopyToClipboard}
+              className="px-6 py-3 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors flex items-center gap-2"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-5 h-5" />
+                  Kopiert!
+                </>
+              ) : (
+                <>
+                  <Copy className="w-5 h-5" />
+                  Kopier til Drive/Notion
+                </>
+              )}
+            </button>
+          )}
           <button
             onClick={handlePrint}
             className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2"
@@ -1007,13 +1012,15 @@ Generert: ${new Date().toLocaleString('nb-NO')}
             <Printer className="w-5 h-5" />
             Skriv ut / Lagre som PDF
           </button>
-          <button
-            onClick={handleClearForm}
-            className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
-          >
-            <Trash2 className="w-5 h-5" />
-            Tøm skjema
-          </button>
+          {mode === 'meeting' && (
+            <button
+              onClick={handleClearForm}
+              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
+            >
+              <Trash2 className="w-5 h-5" />
+              Tøm skjema
+            </button>
+          )}
         </div>
       </div>
     </div>
