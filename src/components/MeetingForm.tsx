@@ -117,12 +117,13 @@ ${formData.seasonalCampaigns || '___________'}
 
 Alle tilganger gis til: media@skardigital.no
 
-3.1 Shopify
+3.1 Nettside
 ✓ Admin-tilgang: ${formData.shopifyAccess || '___________'}
-✓ Link til Shopify-store: ${formData.shopifyStore || '___________'}
+✓ Link til nettside / admin: ${formData.shopifyStore || '___________'}
 
 3.2 Google
 ✓ Google Ads-konto: ${formData.googleAdsAccess || '___________'}
+✓ Bing Ads-konto: ${formData.bingAdsAccess || '___________'}
 ✓ Google Merchant Center: ${formData.googleMerchantAccess || '___________'}
 ✓ Google Search Console: ${formData.googleSearchConsoleAccess || '___________'}
 ✓ Google Tag Manager: ${formData.googleTagManagerAccess || '___________'}
@@ -133,11 +134,15 @@ Alle tilganger gis til: media@skardigital.no
 ✓ Business Manager ID: ${formData.metaBusinessManagerId || '___________'}
 ✓ Notater om tilgang: ${formData.metaAccessNotes || '___________'}
 
-3.4 Klaviyo
+3.4 E-postsystemet
 ✓ Eksisterende konto: ${formData.klaviyoExists || '___________'}
 ✓ Notater: ${formData.klaviyoAccessNotes || '___________'}
 
-3.5 Domene / DNS
+3.5 Triple Whale
+✓ Tilgang: ${formData.tripleWhaleAccess || '___________'}
+✓ Notater: ${formData.tripleWhaleNotes || '___________'}
+
+3.6 Domene / DNS
 ✓ DNS-leverandør: ${formData.dnsProvider || '___________'}
 ✓ Tilgang: ${formData.dnsAccessNotes || '___________'}
 
@@ -162,7 +167,7 @@ Alle tilganger gis til: media@skardigital.no
 
 ═══════════════════════════════════════════════
 
-5. KLAVIYO OPPSETT
+5. E-POSTSYSTEM OPPSETT
 
 5.1 Avsenderinformasjon
 ✓ Avsendernavn: ${formData.senderName || '___________'}
@@ -185,7 +190,7 @@ ${formData.emailDesignPreferences || '___________'}
 ✓ Meta-piksel installert: ${formData.metaPixelInstalled || '___________'}
 ✓ CAPI aktiv: ${formData.capiActive || '___________'}
 ✓ Google Ads konverteringer: ${formData.googleAdsConversions || '___________'}
-✓ Klaviyo e-commerce sporing: ${formData.klaviyoTracking || '___________'}
+✓ E-postsystem e-commerce sporing: ${formData.klaviyoTracking || '___________'}
 
 6.2 Custom tracking
 ${formData.customTracking || '___________'}
@@ -197,6 +202,7 @@ ${formData.customTracking || '___________'}
 7.1 Månedlig budsjett:
 • Meta Ads: ${formData.metaBudget || '___________'} kr
 • Google Ads: ${formData.googleBudget || '___________'} kr
+• Bing Ads: ${formData.bingBudget || '___________'} kr
 • LinkedIn Ads: ${formData.linkedinBudget || '___________'} kr
 • Snapchat Ads: ${formData.snapchatBudget || '___________'} kr
 • TikTok Ads: ${formData.tiktokBudget || '___________'} kr
@@ -481,7 +487,7 @@ Generert: ${new Date().toLocaleString('nb-NO')}
 
             <div className="space-y-6">
               <div className="bg-slate-50 rounded-lg p-4">
-                <h3 className="text-slate-900 mb-4">3.1 Shopify</h3>
+                <h3 className="text-slate-900 mb-4">3.1 Nettside</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-slate-700 mb-2">Admin-tilgang gitt?</label>
@@ -496,12 +502,12 @@ Generert: ${new Date().toLocaleString('nb-NO')}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-slate-700 mb-2">Link til Shopify-store</label>
+                    <label className="block text-slate-700 mb-2">Link til nettside / admin</label>
                     <input
                       type="url"
                       {...register('shopifyStore')}
                       className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                      placeholder="https://butikk.myshopify.com"
+                      placeholder="https://dittdomene.no eller admin-innlogging"
                     />
                   </div>
                 </div>
@@ -514,6 +520,18 @@ Generert: ${new Date().toLocaleString('nb-NO')}
                     <label className="block text-slate-700 mb-2">Google Ads-konto</label>
                     <select
                       {...register('googleAdsAccess')}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <option value="">Velg...</option>
+                      <option value="Tilgang gitt">Tilgang gitt</option>
+                      <option value="Må opprettes">Må opprettes</option>
+                      <option value="Pågår">Pågår</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-slate-700 mb-2">Bing Ads-konto</label>
+                    <select
+                      {...register('bingAdsAccess')}
                       className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
                       <option value="">Velg...</option>
@@ -610,7 +628,7 @@ Generert: ${new Date().toLocaleString('nb-NO')}
               </div>
 
               <div className="bg-slate-50 rounded-lg p-4">
-                <h3 className="text-slate-900 mb-4">3.4 Klaviyo</h3>
+                <h3 className="text-slate-900 mb-4">3.4 E-postsystemet</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-slate-700 mb-2">Eksisterende konto?</label>
@@ -637,7 +655,34 @@ Generert: ${new Date().toLocaleString('nb-NO')}
               </div>
 
               <div className="bg-slate-50 rounded-lg p-4">
-                <h3 className="text-slate-900 mb-4">3.5 Domene / DNS</h3>
+                <h3 className="text-slate-900 mb-4">3.5 Triple Whale</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-slate-700 mb-2">Tilgang</label>
+                    <select
+                      {...register('tripleWhaleAccess')}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <option value="">Velg...</option>
+                      <option value="Tilgang gitt">Tilgang gitt</option>
+                      <option value="Må opprettes">Må opprettes</option>
+                      <option value="Ikke i bruk">Ikke i bruk</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-slate-700 mb-2">Notater</label>
+                    <input
+                      type="text"
+                      {...register('tripleWhaleNotes')}
+                      className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      placeholder="Status, innlogging, kontaktperson..."
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-slate-50 rounded-lg p-4">
+                <h3 className="text-slate-900 mb-4">3.6 Domene / DNS</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-slate-700 mb-2">DNS-leverandør</label>
@@ -744,7 +789,7 @@ Generert: ${new Date().toLocaleString('nb-NO')}
 
           {/* Section 5 */}
           <section className="pb-8 border-b border-slate-200">
-            <h2 className="text-slate-900 mb-6">5. Klaviyo Oppsett – Informasjon vi trenger</h2>
+            <h2 className="text-slate-900 mb-6">5. E-postsystem Oppsett – Informasjon vi trenger</h2>
             
             <div className="bg-slate-50 rounded-lg p-4 mb-4">
               <h3 className="text-slate-900 mb-4">5.1 Avsenderinformasjon</h3>
@@ -837,7 +882,7 @@ Generert: ${new Date().toLocaleString('nb-NO')}
                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   >
                     <option value="">Velg...</option>
-                    <option value="Ja - via Shopify">Ja - via Shopify</option>
+                    <option value="Ja - via nettsiden">Ja - via nettsiden</option>
                     <option value="Ja - via GTM">Ja - via GTM</option>
                     <option value="Nei">Nei</option>
                     <option value="Usikker">Usikker</option>
@@ -868,7 +913,7 @@ Generert: ${new Date().toLocaleString('nb-NO')}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-slate-700 mb-2">Klaviyo e-commerce sporing?</label>
+                  <label className="block text-slate-700 mb-2">E-postsystem e-commerce sporing?</label>
                   <select
                     {...register('klaviyoTracking')}
                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -916,6 +961,18 @@ Generert: ${new Date().toLocaleString('nb-NO')}
                   <input
                     type="text"
                     {...register('googleBudget')}
+                    className="w-full px-4 py-2 pr-12 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    placeholder="10000"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500">kr</span>
+                </div>
+              </div>
+              <div>
+                <label className="block text-slate-700 mb-2">Månedlig Bing Ads budsjett</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    {...register('bingBudget')}
                     className="w-full px-4 py-2 pr-12 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     placeholder="10000"
                   />

@@ -40,6 +40,7 @@ export interface FormData {
   shopifyAccess: string
   shopifyStore: string
   googleAdsAccess: string
+  bingAdsAccess: string
   googleMerchantAccess: string
   googleSearchConsoleAccess: string
   googleTagManagerAccess: string
@@ -47,6 +48,10 @@ export interface FormData {
   googleBusinessAccess: string
   metaBusinessManagerId: string
   metaAccessNotes: string
+  klaviyoExists: string
+  klaviyoAccessNotes: string
+  tripleWhaleAccess: string
+  tripleWhaleNotes: string
   
   // Email & Newsletter
   hasNewsletterSoftware: string // 'yes', 'no'
@@ -63,7 +68,6 @@ export interface FormData {
   brandColors: string
   fonts: string
   brandManual: string
-  brandManual: string
   toneOfVoiceNotes: string
 
   // 5. Email Setup (flexible based on chosen software)
@@ -79,12 +83,14 @@ export interface FormData {
   metaPixelInstalled: string
   capiActive: string
   googleAdsConversions: string
+  klaviyoTracking: string
   emailSoftwareTracking: string
   customTracking: string
 
   // 7. Budget
   metaBudget: string
   googleBudget: string
+  bingBudget: string
   linkedinBudget: string
   snapchatBudget: string
   tiktokBudget: string

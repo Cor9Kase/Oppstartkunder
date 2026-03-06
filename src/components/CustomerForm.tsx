@@ -117,7 +117,7 @@ export function CustomerForm({ clientName, clientId }: CustomerFormProps) {
 
             <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
               <p className="text-blue-900 text-sm">
-                <span className="font-medium">Hva vi trenger:</span> Hvis du bruker en løsning, trenger vi tilgang til å integrer med Shopify og knyttet sporing. Vi kan også bistå med oppsett av ny løsning hvis du velger det.
+                <span className="font-medium">Hva vi trenger:</span> Hvis du bruker en løsning, trenger vi tilgang til å integrere med nettsiden og knyttet sporing. Vi kan også bistå med oppsett av ny løsning hvis du velger det.
               </p>
             </div>
           </div>
@@ -132,14 +132,14 @@ export function CustomerForm({ clientName, clientId }: CustomerFormProps) {
           
           <div className="space-y-6">
             <div className="bg-slate-50 rounded-lg p-4">
-              <h3 className="text-slate-900 mb-3">Shopify</h3>
+              <h3 className="text-slate-900 mb-3">Nettside</h3>
               <ul className="space-y-2 text-slate-700">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                  <span>Admin-tilgang til Shopify-butikken</span>
+                  <span>Admin-tilgang til nettsiden</span>
                 </li>
                 <li className="text-slate-600 text-sm ml-7">
-                  Trengs for e-postintegrasjon, pixel-sjekk, sporing og Google Merchant Center
+                  Trengs for e-postintegrasjon, pixel-sjekk, sporing og oppsett mot annonseplattformer
                 </li>
               </ul>
             </div>
@@ -150,6 +150,10 @@ export function CustomerForm({ clientName, clientId }: CustomerFormProps) {
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
                   <span>Google Ads-konto</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                  <span>Bing Ads-konto, eller opprettelse av konto</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
@@ -203,7 +207,7 @@ export function CustomerForm({ clientName, clientId }: CustomerFormProps) {
             </div>
 
             <div className="bg-slate-50 rounded-lg p-4">
-              <h3 className="text-slate-900 mb-3">E-postmarketering</h3>
+              <h3 className="text-slate-900 mb-3">E-postsystemet</h3>
               <ul className="space-y-2 text-slate-700">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
@@ -214,7 +218,20 @@ export function CustomerForm({ clientName, clientId }: CustomerFormProps) {
                   <span>API-nøkkel for integrasjon (hvis aktuelt)</span>
                 </li>
                 <li className="text-slate-600 text-sm ml-7">
-                  Vi trenger tilgang for å koble Shopify, Facebook og Google-sporing
+                  Vi trenger tilgang for å koble nettsiden, Facebook og Google/Bing-sporing
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-50 rounded-lg p-4">
+              <h3 className="text-slate-900 mb-3">Triple Whale</h3>
+              <ul className="space-y-2 text-slate-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                  <span>Administrator-tilgang til Triple Whale (hvis brukt)</span>
+                </li>
+                <li className="text-slate-600 text-sm ml-7">
+                  For innsikt i attribusjon, sporing og rapportering
                 </li>
               </ul>
             </div>
@@ -281,7 +298,7 @@ export function CustomerForm({ clientName, clientId }: CustomerFormProps) {
             <div className="flex items-start gap-2">
               <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
               <div>
-                <span className="font-medium">Månedlig budsjett for Meta Ads og Google Ads</span>
+                <span className="font-medium">Månedlig budsjett for Meta Ads, Google Ads og Bing Ads</span>
               </div>
             </div>
             <div className="flex items-start gap-2">
